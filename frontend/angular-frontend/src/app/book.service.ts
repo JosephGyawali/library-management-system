@@ -39,6 +39,10 @@ export class BookService {
     return this.HttpClient.get<Book[]>(`${this.borrwedBookUrl}`);
   }
 
+  getBorrwedBookById(id: number): Observable<Book>{
+    return this.HttpClient.get<Book>(`${this.borrwedBookUrl}/${id}`);
+  }
+
   returnBook(id: number): Observable<Object>{
     return this.HttpClient.delete(`${this.borrwedBookUrl}/${id}`);
   }

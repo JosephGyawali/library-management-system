@@ -27,4 +27,21 @@ export class BorrowedBookListComponent implements OnInit {
     })
   }
 
+  returnBook(id: number){
+    this.bookService.getBorrwedBookById(id).subscribe(data => {
+      console.log("1: "+data);
+      this.bookService.createBook(data).subscribe(data => {
+        console.log("2: "+data);
+      })
+    })
+
+    // delete it
+    this.bookService.returnBook(id).subscribe(data => {
+      console.log(data);
+      this.getBooks();
+    })
+
+    // this.router.navigate(['/borrowed-books']);
+  }
+
 }

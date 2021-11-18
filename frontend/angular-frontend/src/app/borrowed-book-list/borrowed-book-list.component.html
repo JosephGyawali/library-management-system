@@ -14,7 +14,7 @@
             <td >{{ book.topic }}</td>
             
             <td >
-                <button class="btn btn-info">
+                <button (click)="returnBook(book.id)" class="btn btn-info">
                     Return
                 </button>
 

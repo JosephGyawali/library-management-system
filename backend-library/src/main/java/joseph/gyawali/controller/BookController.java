@@ -85,6 +85,16 @@ public class BookController {
 		return BorrowedBooksRepository.save(BorrowedBooks);
 	}
 	
+	// get borrowed books by id rest api
+	@GetMapping("/borrowed-books/{id}")
+	@CrossOrigin(origins = "http://localhost:4200") 
+	public ResponseEntity<BorrowedBooks> getBookById(@PathVariable Long id) {
+		BorrowedBooks BorrowedBooks = BorrowedBooksRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("item not exist with id: ")); 
+		
+		return ResponseEntity.ok(BorrowedBooks);
+	}
+	
 	// delete borrowed Books rest api
 	@DeleteMapping("/borrowed-books/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
