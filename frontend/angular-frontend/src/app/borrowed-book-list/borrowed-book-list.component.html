@@ -1,0 +1,28 @@
+<h2>Borrowed Books</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Topic</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of books">
+            <td >{{ book.title}}</td>
+
+            <td >{{ book.topic }}</td>
+            
+            <td >
+                <button class="btn btn-info">
+                    Return
+                </button>
+
+                <button class="btn btn-danger">
+                    Add to wish list
+                </button>
+
+            </td>
+
+    </tbody>
+</table>

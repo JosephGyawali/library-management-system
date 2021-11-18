@@ -1,0 +1,37 @@
+<h2>Books available</h2>
+<h4>Filter Here</h4>
+<select name="topics" id="topics" class="form-control" [(ngModel)]="topics" (ngModelChange)="execute()">
+    <option *ngFor="let book of books " [value]="book.topic">
+        {{book.topic}}
+    </option>
+
+</select>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Topic</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of books | topicFilter:topics">
+            <td >{{ book.title}}</td>
+
+            <td >{{ book.topic }}</td>
+            
+            <td >
+                <button (click)="borrowBook(book.id)" class="btn btn-info">
+                    Borrow
+                </button>
+
+                <button class="btn btn-danger">
+                    Add to wish list
+                </button>
+
+            </td>
+
+    </tbody>
+</table>
