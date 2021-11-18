@@ -16,6 +16,15 @@ export class BorrowedBookListComponent implements OnInit {
   constructor(private bookService: BookService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getBooks();
+  }
+
+  private getBooks(){
+    console.log("Hitting this");
+    this.bookService.getBorrowedBookList().subscribe(data => {
+      console.log(`${data}`);
+      this.books = data;
+    })
   }
 
 }
