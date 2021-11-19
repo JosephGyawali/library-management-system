@@ -10,6 +10,7 @@ import { CreateBookComponent } from './create-book/create-book.component';
 import { TopicFilterPipe } from './topic-filter.pipe';
 import { TopicDropDownFilterPipe } from './topic-drop-down-filter.pipe';
 import { BorrowedBookListComponent } from './borrowed-book-list/borrowed-book-list.component';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { BorrowedBookListComponent } from './borrowed-book-list/borrowed-book-li
     CreateBookComponent,
     TopicFilterPipe,
     TopicDropDownFilterPipe,
-    BorrowedBookListComponent
+    BorrowedBookListComponent,
+    WishListComponent
     
   ],
   imports: [

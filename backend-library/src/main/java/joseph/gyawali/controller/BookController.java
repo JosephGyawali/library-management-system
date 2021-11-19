@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import joseph.gyawali.exception.ResourceNotFoundException;
 import joseph.gyawali.model.Book;
 import joseph.gyawali.model.BorrowedBooks;
-import joseph.gyawali.model.Item;
+import joseph.gyawali.model.WishList;
 import joseph.gyawali.repository.BookRepository;
 import joseph.gyawali.repository.BorrowedBooksRepository;
+import joseph.gyawali.repository.WishListRepository;
+
 
 
 
@@ -31,6 +33,9 @@ public class BookController {
 
 	@Autowired
 	private BorrowedBooksRepository BorrowedBooksRepository;
+	
+	@Autowired
+	private WishListRepository WishListRepository;
 	
 	// get all books
 	@GetMapping("/books")
@@ -108,5 +113,48 @@ public class BookController {
 		
 		return ResponseEntity.ok(response);
 	}
+	
+	// wish list books rest api
+	
+	// get all books in wish list table
+	@GetMapping("/wishlist-books")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public List<WishList> getAllWishListBooks(){
+		return WishListRepository.findAll();
+	}
+	
+	// create wishlist books rest api
+	@PostMapping("/wishlist-books")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public WishList createWishListBooks(@RequestBody WishList WishList) {
+		return WishListRepository.save(WishList);
+	}
+
+	// get wishlist books by id rest api
+	@GetMapping("/wishlist-books/{id}")
+	@CrossOrigin(origins = "http://localhost:4200") 
+	public ResponseEntity<WishList> getWishListBooksById(@PathVariable Long id) {
+		WishList WishList = WishListRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("item not exist with id: ")); 
+			
+		return ResponseEntity.ok(WishList);
+	}
+	
+	// delete wishlist Books rest api
+	@DeleteMapping("/wishlist-books/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<Map<String, Boolean>>  returnWishListBook(@PathVariable Long id){
+		WishList WishList = WishListRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Item not exist with id: ")); 
+			
+		WishListRepository.delete(WishList);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+			
+		return ResponseEntity.ok(response);
+	}
+	
+	
+	
 	
 }

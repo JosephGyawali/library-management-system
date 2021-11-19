@@ -27,8 +27,12 @@
                     Borrow
                 </button>
 
-                <button class="btn btn-danger">
+                <button (click)="addToWishListBook(book.id)" class="btn btn-secondary">
                     Add to wish list
+                </button>
+
+                <button (click)="remove(book.id)" class="btn btn-danger">
+                    Delete
                 </button>
 
             </td>

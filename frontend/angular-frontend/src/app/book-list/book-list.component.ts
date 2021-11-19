@@ -40,15 +40,6 @@ export class BookListComponent implements OnInit {
   }
 
   appendBookTopics(){
-    // this.books.map(book => book.topic)
-    // .filter((value, index, self) => self.indexOf(value) === index);
-
-    // this.books = this.books.filter((val,ind,arr)=>
-    //    ind === ((t) => (
-    //      t.topic == val.topic
-    //    ));
-
-
     console.log(this.books);
   }
 
@@ -67,6 +58,23 @@ export class BookListComponent implements OnInit {
     this.bookService.deleteBook(id).subscribe(data => {
       console.log(data);
       this.getBooks();
+    })
+  }
+
+  addToWishListBook(id: number){
+    this.bookService.getBookById(id).subscribe(data => {
+      
+      this.bookService.addToWishList(data).subscribe(data => {
+        console.log(data);
+      });
+    })
+
+    this.router.navigate(['/wishlist-books']);
+  }
+
+  remove(id: number){
+    this.bookService.deleteBook(id).subscribe(data => {
+      console.log(data);
     })
   }
 

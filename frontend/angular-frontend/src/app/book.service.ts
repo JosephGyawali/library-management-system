@@ -12,6 +12,8 @@ export class BookService {
 
   private borrwedBookUrl = "http://localhost:8080/api/v1/borrowed-books";
 
+  private wishListUrl="http://localhost:8080/api/v1/wishlist-books";
+
   constructor(private HttpClient: HttpClient) { }
 
   getBooksList(): Observable<Book[]>{
@@ -45,5 +47,22 @@ export class BookService {
 
   returnBook(id: number): Observable<Object>{
     return this.HttpClient.delete(`${this.borrwedBookUrl}/${id}`);
+  }
+
+  // wish list api calls
+  addToWishList(book: Book): Observable<Object>{
+    return this.HttpClient.post<Object>(`${this.wishListUrl}`, book);
+  }
+
+  getWishList(): Observable<Book[]>{
+    return this.HttpClient.get<Book[]>(`${this.wishListUrl}`);
+  }
+
+  getWishListBookById(id: number): Observable<Book>{
+    return this.HttpClient.get<Book>(`${this.wishListUrl}/${id}`);
+  }
+
+  returnWishListBook(id: number): Observable<Object>{
+    return this.HttpClient.delete(`${this.wishListUrl}/${id}`);
   }
 }
