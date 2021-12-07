@@ -1,5 +1,7 @@
 package joseph.gyawali.controller;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,6 +38,11 @@ public class BookController {
 	
 	@Autowired
 	private WishListRepository WishListRepository;
+	
+	@GetMapping("/welcome")
+	public String welcome() {
+		return "Welcome to the spring boot heroku demo";
+	}
 	
 	// get all books
 	@GetMapping("/books")
